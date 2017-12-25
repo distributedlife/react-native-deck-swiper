@@ -31,8 +31,10 @@ class Swiper extends React.Component {
   }
 
   componentWillReceiveProps (newProps) {
-    if (newProps.cards === this.state.cards) {
-      return;
+    if (this.props.haveCardsChanged) {
+      if (!this.props.haveCardsChanged(this.state.cards, newProps.cards)) {
+        return;
+      }
     }
 
     this.setState({
